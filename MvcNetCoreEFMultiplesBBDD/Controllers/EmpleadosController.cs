@@ -26,5 +26,25 @@ namespace MvcNetCoreEFMultiplesBBDD.Controllers
             return View(empleado);
         }
 
+        //HACEMOS EL INSERT DE EMPLEADO CON ALGUNAS MODIFICACIONES
+        public IActionResult CreateEmpleado()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateEmpleado(Empleado emp, string nombredept)
+        {
+            await this.repo.InsertEmpleado(emp.Apellido, emp.Oficio, emp.Dir,emp.Salario,emp.Comision, nombredept);
+            return RedirectToAction("Index");
+        }
+
+        //Delete
+        public async Task<IActionResult> DeleteEmpleado(int idemp)
+        {//USAR BREARKPOINTS SI NO LLEGA O EL NOMBRE ES DISTINTO
+            await this.repo.DeleteEmpleadoAsync(idemp);
+            return RedirectToAction("Index");
+        }
+
+
     }
 }

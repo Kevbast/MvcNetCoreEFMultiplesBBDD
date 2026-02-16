@@ -10,7 +10,7 @@ builder.Services.AddControllersWithViews();
 //COMO USAMOS INTERFACE CAMBIAMOS EL TRANSIENT
 //builder.Services.AddTransient<RepositoryEmpleadosSqlServer>();
 
-builder.Services.AddTransient<IRepositoryEmpleados,RepositoryEmpleadosOracle>();//cambiamos los controles tmb!
+builder.Services.AddTransient<IRepositoryEmpleados,RepositoryEmpleadosMySql>();//cambiamos los controles tmb!
 
 //VAMOS A IR CAMBIANDO EL CONNECTIONSTRING DEPENDIENDO EL USO
 //y ponemos UseOracle en vez de UseSqlServer
@@ -21,9 +21,16 @@ builder.Services.AddTransient<IRepositoryEmpleados,RepositoryEmpleadosOracle>();
 //    (options => options.UseSqlServer(connectionString));
 
 //-----ORACLE-----
-string connectionString = builder.Configuration.GetConnectionString("OracleHospital");
+//string connectionString = builder.Configuration.GetConnectionString("OracleHospital");
+//builder.Services.AddDbContext<HospitalContext>
+//    (options => options.UseOracle(connectionString));
+
+//-----MYSQL-----
+string connectionString = builder.Configuration.GetConnectionString("MySqlHospital");
 builder.Services.AddDbContext<HospitalContext>
-    (options => options.UseOracle(connectionString));
+    (options => options.UseMySQL(connectionString));
+
+
 
 
 
