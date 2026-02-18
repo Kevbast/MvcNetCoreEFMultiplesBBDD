@@ -42,6 +42,11 @@ create OR ALTER procedure SP_INSERT_EMPLEADO
             insert into EMP values(@empno,@apellido,@oficio,@dir,@fecha_alt,@salario,@comision,@deptno)
             
         GO
+----PARA DEVOLVER EMP OUT
+(@apellido nvarchar(50),@oficio nvarchar(50),@dir int,@salario int,@comision int, @nombredept nvarchar(50), @empno int out )
+        AS 
+            select @empno= MAX(EMP_NO)+1 FROM EMP 
+            print @empno
 
  */
 #endregion
